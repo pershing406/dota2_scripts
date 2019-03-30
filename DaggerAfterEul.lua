@@ -1,42 +1,35 @@
-local Test = {};
-
+local QuickDagger = {};
 local tableName = {"Utility", "Dagger After Eul"};
 
 local myHero = 0;
 
-Test.optionEnable = Menu.AddOptionBool(tableName, "Enable", fasle);
-Test.toggleKey = Menu.AddKeyOption(tableName, "Dagger Key", Enum.ButtonCode.KEY_NONE);
+QuickDagger.optionEnable = Menu.AddOptionBool(tableName, "Enable", fasle);
+QuickDagger.toggleKey = Menu.AddKeyOption(tableName, "Dagger Key", Enum.ButtonCode.KEY_NONE);
 
-function Test.OnScriptLoad( ... )
-    Log.Write("Script Loaded!");
-    Log.Write(myHero);
-end
--------------------------------------
-function Test.Init( ... )
+function QuickDagger.Init( ... )
     if Engine.IsInGame() then
         myHero = Heroes.GetLocal();
     end
 end
-Test.Init();
+QuickDagger.Init();
 
-function Test.OnGameStart( ... )
-    Test.Init();
+function QuickDagger.OnGameStart( ... )
+    QuickDagger.Init();
 end
--------------------------------------
 
-function Test.OnUpdate( ... )
-    if not Menu.IsEnabled(Test.optionEnable) then return end; -- включено ли меню
-    if not Engine.IsInGame() then return end; -- запущена ли игра
-    if not myHero then return end; -- объект героя
+function QuickDagger.OnUpdate( ... )
+    if not Menu.IsEnabled(QuickDagger.optionEnable) then return end;
+    if not Engine.IsInGame() then return end; 
+    if not myHero then return end; 
 
-    local DaggerItem = NPC.GetItem(myHero, "item_blink"); -- получение объекта блинка
-    if not NPC.HasItem(myHero, "item_blink") then return end; -- есть ли блинк в инвентаре
-    if not Ability.IsReady(DaggerItem) then return end; -- готов ли к применению блинк
+    local DaggerItem = NPC.GetItem(myHero, "item_blink");
+    if not NPC.HasItem(myHero, "item_blink") then return end; 
+    if not Ability.IsReady(DaggerItem) then return end; 
 
     local PosCursor = Input.GetWorldCursorPos();
-    if Menu.IsKeyDown(Test.toggleKey) then
+    if Menu.IsKeyDown(QuickDagger.toggleKey) then
         Ability.CastPosition(DaggerItem, PosCursor);
     end
 end
 
-return Test;
+return QuickDagger;
