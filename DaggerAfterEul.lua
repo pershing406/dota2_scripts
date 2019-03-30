@@ -3,7 +3,7 @@ local tableName = {"Utility", "Dagger After Eul"};
 
 local myHero = 0;
 
-QuickDagger.optionEnable = Menu.AddOptionBool(tableName, "Enable", fasle);
+QuickDagger.optionEnable = Menu.AddOptionBool(tableName, "Enabled", fasle);
 QuickDagger.toggleKey = Menu.AddKeyOption(tableName, "Dagger Key", Enum.ButtonCode.KEY_NONE);
 
 function QuickDagger.Init( ... )
