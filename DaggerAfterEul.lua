@@ -1,5 +1,5 @@
 local QuickDagger = {};
-local tableName = {"Utility", "Dagger After Eul"};
+local tableName = {"Utility", "Quick Dagger"};
 
 local myHero = 0;
 
